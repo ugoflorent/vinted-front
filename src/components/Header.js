@@ -1,5 +1,5 @@
 import logo from "../img/logo.png";
-//import home from "../img/home.jpg";
+
 //import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 
@@ -56,11 +56,11 @@ const Header = ({ handleToken, token, search, setSearch }) => {
           <Link to="/login">
             <button>Se connecter</button>
           </Link>
-          <Link to="/publish">
-            <button className="sale">Vends tes articles</button>
-          </Link>
         </>
       )}
+      <Link to={token ? "/publish" : "/login"}>
+        <button className="sale">Vends tes articles</button>
+      </Link>
     </header>
   );
 };

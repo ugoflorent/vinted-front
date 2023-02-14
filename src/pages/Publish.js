@@ -1,72 +1,97 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import CustomInput from "../components/CustomInput";
 import axios from "axios";
 
-const Publish = () => {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+const Publish = ({ token }) => {
   const [picture, setPicture] = useState();
-  const [imageToDisplay, setImageToDisplay] = useState();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [brand, setBrand] = useState("");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [condition, setCondition] = useState("");
+  const [city, setCity] = useState("");
 
-  return (
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("condition", condition);
+      formData.append("city", city);
+      formData.append("brand", brand);
+      formData.append("size", size);
+      formData.append("color", color);
+      formData.append("picture", picture);
+
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        formData,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
+  return token ? (
     <div
+      className="publish"
       style={{
+        height: "100vh",
+        width: "100vw",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
-          try {
-            const formData = new FormData();
-
-            formData.append("email", email);
-            formData.append("username", username);
-            formData.append("picture", picture);
-            const response = await axios.post(
-              "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
-              formData,
-              {
-                headers: {
-                  authorization: "Bearer Voici mon token",
-                  "Content-Type": "multipart/form-data",
-                },
-              }
-            );
-            console.log(response);
-            setImageToDisplay(response.data);
-          } catch (error) {
-            console.log(error.message);
-          }
-        }}
-      >
-        <input
-          value={email}
-          type="email"
-          placeholder="Email"
-          onChange={(event) => {
-            setEmail(event.target.value);
+      <form onSubmit={handleSubmit}>
+        <h2>Vends ton article !</h2>
+        <label
+          style={{
+            backgroundColor: "green",
+            color: "yellow",
           }}
-        />
+          htmlFor="file"
+        >
+          Choisis une image
+        </label>
         <input
-          value={username}
-          type="text"
-          placeholder="Nom d'utilisateur"
-          onChange={(event) => {
-            setUsername(event.target.value);
-          }}
-        />
-        <input
+          id="file"
+          style={{ display: "none" }}
           type="file"
           onChange={(event) => {
             setPicture(event.target.files[0]);
           }}
         />
-        <input type="submit" />
+        {picture && <img src={URL.createObjectURL(picture)} alt="product" />}
+        <CustomInput title={"Titre"} state={title} setState={setTitle} />
+        <CustomInput
+          textArea
+          title="Décris ton article"
+          state={description}
+          setState={setDescription}
+        />
+        <CustomInput title={"Marque"} state={brand} setState={setBrand} />
+        <CustomInput title={"Taille"} state={size} setState={setSize} />
+        <CustomInput title={"Couleur"} state={color} setState={setColor} />
+        <CustomInput title={"Etat"} state={condition} setState={setCondition} />
+        <CustomInput title={"Lieu"} state={city} setState={setCity} />
+        <CustomInput title={"Prix"} state={price} setState={setPrice} />
+        <input type="submit" value="Publier l'offre" />
       </form>
-      {imageToDisplay && <img src={imageToDisplay.secure_url} alt="" />}
     </div>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 

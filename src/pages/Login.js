@@ -60,7 +60,12 @@ const Login = ({ handleToken }) => {
             setPassword(event.target.value);
           }}
         />
-        <input className="connecter" type="submit" value="Se connecter" />
+        <input
+          style={{ marginBottom: 10 }}
+          className="connecter"
+          type="submit"
+          value="Se connecter"
+        />
         <Link to="/signup" className="signup">
           Pas encore de compte , Inscris-toi
         </Link>

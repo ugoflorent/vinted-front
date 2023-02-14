@@ -49,6 +49,7 @@ const Signup = ({ handleToken }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        height: "100vh",
       }}
     >
       <form
@@ -57,6 +58,7 @@ const Signup = ({ handleToken }) => {
       >
         <h1 style={{ textAlign: "center", margin: 20 }}>S'inscrire</h1>
         <input
+          style={{ border: "none", marginBottom: 10 }}
           value={username}
           type="text"
           placeholder="Nom d'utilisateur"
@@ -65,6 +67,7 @@ const Signup = ({ handleToken }) => {
           }}
         />
         <input
+          style={{ border: "none", marginBottom: 10 }}
           value={email}
           type="mail"
           placeholder="Email"
@@ -73,6 +76,7 @@ const Signup = ({ handleToken }) => {
           }}
         />
         <input
+          style={{ border: "none", marginBottom: 10 }}
           value={password}
           type="password"
           placeholder="Mot de passe"
@@ -82,6 +86,7 @@ const Signup = ({ handleToken }) => {
         />
         <div>
           <input
+            style={{ marginBottom: 10 }}
             checked={newsletter}
             type="checkbox"
             onChange={() => {
@@ -97,7 +102,12 @@ const Signup = ({ handleToken }) => {
             Je confirme avoir au moins 18 ans.
           </span>
         </div>
-        <input className="submit" type="submit" value="S'inscrire" />
+        <input
+          style={{ marginTop: 10, marginBottom: 10 }}
+          className="submit"
+          type="submit"
+          value="S'inscrire"
+        />
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <Link to="/login" className="login">
           Tu as déjà un compte, connecte-toi !

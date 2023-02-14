@@ -26,7 +26,6 @@ const Home = ({ search }) => {
     <p>loading...</p>
   ) : (
     <div
-      // className="offer-card"
       style={{
         alignItems: "center",
 
