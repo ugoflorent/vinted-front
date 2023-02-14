@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 const OfferCard = ({ offerInfos }) => {
   return (
     <Link to={`/offer/${offerInfos._id}`}>
-      <article
-        //className="offer-card"
-        style={{ margin: "20px 15px" }}
-      >
+      <article style={{ margin: "20px 15px" }}>
         <div>
           {offerInfos.owner.account.avatar && (
             <img
@@ -28,7 +25,10 @@ const OfferCard = ({ offerInfos }) => {
           style={{ height: "360px", width: "230px", objectFit: "cover" }}
         />
         <p>{offerInfos.product_price} €</p>
-        <div style={{ display: "flex", flexDirection: "column-reverse" }}>
+        <div
+          className="offer-card"
+          style={{ display: "flex", flexDirection: "column-reverse" }}
+        >
           {offerInfos.product_details.map((detail, index) => {
             if (detail.TAILLE) {
               return <p key={index}>{detail.TAILLE}</p>;
@@ -40,6 +40,9 @@ const OfferCard = ({ offerInfos }) => {
           })}
         </div>
       </article>
+      <div>
+        <button>Acheter</button>
+      </div>
     </Link>
   );
 };

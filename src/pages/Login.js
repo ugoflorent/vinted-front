@@ -10,7 +10,7 @@ const Login = ({ handleToken }) => {
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
-    event.prerventDefault();
+    event.preventDefault();
     try {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/login",

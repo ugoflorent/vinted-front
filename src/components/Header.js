@@ -33,6 +33,7 @@ const Header = ({ handleToken, token, search, setSearch }) => {
 
       {token ? (
         <button
+          className="deconnection"
           onClick={() => {
             handleToken(null);
           }}

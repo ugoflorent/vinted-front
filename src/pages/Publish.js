@@ -54,20 +54,21 @@ const Publish = ({ token }) => {
         alignItems: "center",
       }}
     >
-      <form onSubmit={handleSubmit}>
+      <form className="sales" onSubmit={handleSubmit}>
         <h2>Vends ton article !</h2>
         <label
           style={{
-            backgroundColor: "green",
-            color: "yellow",
+            backgroundColor: "white",
+            color: "blue",
+            width: "100vw",
           }}
           htmlFor="file"
         >
-          Choisis une image
+          Ajoute une image
         </label>
         <input
           id="file"
-          style={{ display: "none" }}
+          style={{ display: "none", width: "100vw" }}
           type="file"
           onChange={(event) => {
             setPicture(event.target.files[0]);
@@ -87,7 +88,7 @@ const Publish = ({ token }) => {
         <CustomInput title={"Etat"} state={condition} setState={setCondition} />
         <CustomInput title={"Lieu"} state={city} setState={setCity} />
         <CustomInput title={"Prix"} state={price} setState={setPrice} />
-        <input type="submit" value="Publier l'offre" />
+        <input className="add" type="submit" value="Ajouter" />
       </form>
     </div>
   ) : (

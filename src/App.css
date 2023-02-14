@@ -84,3 +84,27 @@ body {
   color: #2aaeb7;
   text-decoration: none;
 }
+
+.header .deconnection {
+  border: solid 1px #ff0000;
+  color: white;
+  background-color: #ff0000;
+}
+
+.sales {
+  height: "100vh";
+  width: "100vw";
+  display: "flex";
+  justify-content: center;
+  align-items: stretch;
+}
+
+.add {
+  height: 30px;
+  width: 150px;
+  border-radius: 10px;
+  border: solid 1px #2aaeb7;
+  color: white;
+  background-color: #2aaeb7;
+  margin-top: 10px;
+}
