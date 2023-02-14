@@ -8,9 +8,11 @@ const stripePromise = loadStripe(
 
 function Payment() {
   return (
-    <Elements stripe={stripePromise}>
-      <CheckoutForm />
-    </Elements>
+    <div className="payment">
+      <Elements stripe={stripePromise}>
+        <CheckoutForm />
+      </Elements>
+    </div>
   );
 }
 
